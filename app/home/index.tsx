@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native'
+import { View, StatusBar } from "react-native";
 
-const index = () => {
+const Homepage = () => {
   return (
-    <View>
-      <Text>index</Text>
+    <View className="flex-1 bg-white">
+      <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
     </View>
-  )
-}
+  );
+};
 
-export default index
+export default Homepage;

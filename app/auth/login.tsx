@@ -97,7 +97,10 @@ const Login = () => {
             </Pressable>
           </View>
 
-          <Pressable className="bg-[#F83758] py-3 rounded-lg mb-6">
+          <Pressable
+            onPress={() => router.push("/home")}
+            className="bg-[#F83758] py-3 rounded-lg mb-6"
+          >
             <Text className="text-white font-bold text-center text-lg">
               Login
             </Text>
@@ -107,34 +110,36 @@ const Login = () => {
             Or continue with
           </Text>
 
-          <View className="flex-row justify-center mb-8 gap-3">
+          <View className="flex-row justify-between mb-8 px-12">
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/google.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>
+
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/facebook.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>
+
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/phone.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>

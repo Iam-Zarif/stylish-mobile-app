@@ -82,7 +82,9 @@ const Register = () => {
             </Pressable>
           </View>
 
-          <Text className="text-neutral-800 font-semibold mb-1">Confirm Password</Text>
+          <Text className="text-neutral-800 font-semibold mb-1">
+            Confirm Password
+          </Text>
           <View className="flex-row items-center border border-neutral-300 rounded-lg px-4 py-1 mb-6 bg-white">
             <MaterialIcons name="lock-outline" size={20} color="#9CA3AF" />
             <TextInput
@@ -111,36 +113,36 @@ const Register = () => {
             Or continue with
           </Text>
 
-          <View className="flex-row justify-center mb-8 gap-3">
+          <View className="flex-row justify-between mb-8 px-12">
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/google.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>
 
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/facebook.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>
 
             <Pressable
-              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
+              className="w-12 h-12 border border-[#F83758] bg-[#F83758]/5 flex-row justify-center items-center rounded-full"
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
                 source={require("../../public/auth/phone.png")}
-                className="w-10 h-10"
+                className="w-6 h-6"
                 resizeMode="contain"
               />
             </Pressable>
