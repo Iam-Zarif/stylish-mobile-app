@@ -1,27 +1,25 @@
 import React, { useState, useRef } from "react";
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  Dimensions,
-  Animated,
-} from "react-native";
+import { View, Image, Pressable, Dimensions, Animated, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Menu from "./Menu";
-import { Ionicons } from "@expo/vector-icons";
 import NavItems from "./NavItems";
+import { Ionicons } from "@expo/vector-icons";
 
-const { width } = Dimensions.get("window");
-const DRAWER_WIDTH = width * 1; 
+const { width, height } = Dimensions.get("window");
 
-const Navbar = () => {
+interface NavbarProps {
+  onDrawerChange?: (open: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onDrawerChange }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
-  const drawerAnim = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
+  const drawerAnim = useRef(new Animated.Value(-width)).current;
 
   const toggleDrawer = () => {
     if (!drawerOpen) {
       setDrawerOpen(true);
+      onDrawerChange?.(true);
       Animated.timing(drawerAnim, {
         toValue: 0,
         duration: 300,
@@ -29,15 +27,18 @@ const Navbar = () => {
       }).start();
     } else {
       Animated.timing(drawerAnim, {
-        toValue: -DRAWER_WIDTH,
+        toValue: -width,
         duration: 300,
         useNativeDriver: false,
-      }).start(() => setDrawerOpen(false));
+      }).start(() => {
+        setDrawerOpen(false);
+        onDrawerChange?.(false);
+      });
     }
   };
 
   return (
-    <>
+    <SafeAreaView edges={["top"]} className="bg-white z-50">
       <View className="flex-row shadow-sm shadow-neutral-300 rounded-full items-center justify-between py-1 px-3">
         <Pressable onPress={toggleDrawer}>
           <Menu />
@@ -60,34 +61,17 @@ const Navbar = () => {
       </View>
 
       {drawerOpen && (
-        <View style={{ position: "absolute", top: 0, left: 0, width, height: "100%", zIndex: 999 }}>
+        <View className="absolute top-0 left-0 w-screen h-screen z-[1000]">
           <Pressable
-            style={{
-              position: "absolute",
-              top: 0,
-              left: DRAWER_WIDTH,
-              width: width - DRAWER_WIDTH,
-              height: "100%",
-              backgroundColor: "rgba(0,0,0,0.25)",
-            }}
+            className="absolute top-0 left-0 w-screen h-screen bg-black/25"
             onPress={toggleDrawer}
           />
 
           <Animated.View
-            style={{
-              position: "absolute",
-              top: 0,
-              left: drawerAnim,
-              width: DRAWER_WIDTH,
-              height: "100%",
-              backgroundColor: "#fff",
-              padding: 15,
-            }}
+            style={{ left: drawerAnim }}
+            className="absolute top-0 h-screen w-screen bg-white p-4 shadow-xl"
           >
-            <Pressable
-              onPress={toggleDrawer}
-              style={{ position: "absolute", top: 20, right: 20 }}
-            >
+            <Pressable onPress={toggleDrawer} className="absolute top-5 right-5">
               <Ionicons name="close" size={28} color="#F83758" />
             </Pressable>
 
@@ -95,7 +79,7 @@ const Navbar = () => {
           </Animated.View>
         </View>
       )}
-    </>
+    </SafeAreaView>
   );
 };
 
