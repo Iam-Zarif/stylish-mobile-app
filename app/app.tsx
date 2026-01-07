@@ -8,7 +8,7 @@ const App = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-[#FAFAFA]">
       <StatusBar
         barStyle="light-content"    
         backgroundColor="#000000"  

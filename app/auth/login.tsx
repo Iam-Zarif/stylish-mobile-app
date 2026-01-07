@@ -12,31 +12,31 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-[#FAFAFA]">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1, justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "center",
+            paddingHorizontal: 24,
+          }}
           keyboardShouldPersistTaps="handled"
         >
           <View className="items-center mb-6">
-            <Image
-              source={require("../../assets/favicon.png")}
-              className="w-12 h-12 mb-6"
-              resizeMode="contain"
-            />
             <Text className="text-4xl font-bold text-center mb-2 text-[#F83758]">
               Welcome Back
             </Text>
@@ -46,23 +46,36 @@ const Login = () => {
           </View>
 
           <Text className="text-neutral-800 font-semibold mb-1">Email</Text>
-          <TextInput
-            placeholder="Enter your email"
-            className="border border-neutral-300 rounded-lg px-4 py-3 mb-4"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
+          <View className="flex-row items-center border border-neutral-300 rounded-xl px-4 py-1 mb-4 bg-white">
+            <Ionicons name="mail" size={20} color="#9CA3AF" />
+            <TextInput
+              placeholder="Enter your email"
+              className="ml-3 flex-1"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
 
           <Text className="text-neutral-800 font-semibold mb-1">Password</Text>
-          <TextInput
-            placeholder="Enter your password"
-            className="border border-neutral-300 rounded-lg px-4 py-3 mb-2"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
+          <View className="flex-row items-center border border-neutral-300 rounded-xl px-4 py-1 mb-2 bg-white">
+            <MaterialIcons name="lock-outline" size={20} color="#9CA3AF" />
+            <TextInput
+              placeholder="Enter your password"
+              className="ml-3 flex-1"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+            />
+            <Pressable onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={20}
+                color="#9CA3AF"
+              />
+            </Pressable>
+          </View>
 
           <View className="flex-row justify-between items-center mb-6">
             <Pressable
@@ -79,7 +92,7 @@ const Login = () => {
               <Text>Remember Me</Text>
             </Pressable>
 
-            <Pressable>
+            <Pressable onPress={() => router.push("/auth/forgot-password")}>
               <Text className="text-[#F83758] font-bold">Forgot Password?</Text>
             </Pressable>
           </View>
@@ -96,7 +109,7 @@ const Login = () => {
 
           <View className="flex-row justify-center mb-8 gap-3">
             <Pressable
-              className="flex-1 rounded-lg py-3 flex-row justify-center items-center bg-white"
+              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
@@ -105,9 +118,8 @@ const Login = () => {
                 resizeMode="contain"
               />
             </Pressable>
-
             <Pressable
-              className="flex-1 rounded-lg py-3 flex-row justify-center items-center bg-white"
+              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
@@ -116,9 +128,8 @@ const Login = () => {
                 resizeMode="contain"
               />
             </Pressable>
-
             <Pressable
-              className="flex-1 rounded-lg py-3 flex-row justify-center items-center bg-white"
+              className="flex-1 py-3 flex-row justify-center items-center rounded-full "
               android_ripple={{ color: "#E5E5E5" }}
             >
               <Image
