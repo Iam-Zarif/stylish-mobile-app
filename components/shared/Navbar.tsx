@@ -38,8 +38,8 @@ const Navbar: React.FC<NavbarProps> = ({ onDrawerChange }) => {
   };
 
   return (
-    <SafeAreaView edges={["top"]} className="bg-white z-50">
-      <View className="flex-row shadow-sm shadow-neutral-300 rounded-full items-center justify-between py-1 px-3">
+    <SafeAreaView edges={["top"]} className="bg-neutral-100 rounded-full z-50">
+      <View className="flex-row shadow-sm shadow-neutral-300 rounded-full items-center justify-between py-1.5 px-3">
         <Pressable onPress={toggleDrawer}>
           <Menu />
         </Pressable>
