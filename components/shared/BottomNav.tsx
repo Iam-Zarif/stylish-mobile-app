@@ -3,12 +3,15 @@ import { View, Text, Pressable } from "react-native";
 import { Ionicons, Entypo, Feather } from "@expo/vector-icons";
 import { useRouter, useSegments } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "../../provider/ThemeContext";
 
 const BottomNav = ({ hidden }: { hidden?: boolean }) => {
+  const { isDark } = useTheme();
   const router = useRouter();
   const segments = useSegments();
   const currentRoute = segments[segments.length - 1] || "home";
 
+  const themeColor = "#F83758"; 
   const navItems = [
     { name: "Home", icon: <Ionicons name="home-outline" size={22} />, filledIcon: <Ionicons name="home" size={22} />, route: "/home" },
     { name: "Wishlist", icon: <Entypo name="heart-outlined" size={22} />, filledIcon: <Entypo name="heart" size={22} />, route: "/home/wishlist" },
@@ -20,8 +23,8 @@ const BottomNav = ({ hidden }: { hidden?: boolean }) => {
   if (hidden) return null;
 
   return (
-    <SafeAreaView className="absolute bg-white py-2 bottom-0 w-full">
-      <View className="flex-row h-18 justify-around items-center px-4 rounded-t-2xl">
+    <SafeAreaView className={`absolute py-2 bottom-0 w-full ${isDark ? "bg-neutral-900 border-t border-neutral-700" : "bg-white border-t border-neutral-200"}`}>
+      <View className={`flex-row h-18 justify-around items-center px-4 rounded-t-2xl `}>
         {navItems.map((item, index) => {
           const isCart = item.name === "Cart";
           const isActive =
@@ -33,9 +36,7 @@ const BottomNav = ({ hidden }: { hidden?: boolean }) => {
               <Pressable
                 key={index}
                 onPress={() => router.push(item.route)}
-                className={`w-12 h-12 rounded-full justify-center items-center shadow-xl ${
-                  isActive ? "bg-[#F83758]" : "bg-white"
-                }`}
+                className={`w-12 h-12 rounded-full justify-center items-center shadow-xl ${isActive ? "bg-[#F83758]" : isDark ? "bg-neutral-800" : "bg-white"}`}
                 style={{
                   shadowColor: "#000",
                   shadowOffset: { width: 0, height: 3 },
@@ -45,7 +46,7 @@ const BottomNav = ({ hidden }: { hidden?: boolean }) => {
                 }}
               >
                 {React.cloneElement(isActive && item.filledIcon ? item.filledIcon : item.icon, {
-                  color: isActive ? "#fff" : "#000",
+                  color: isActive ? "#fff" : isDark ? "#FFF" : "#000",
                 })}
               </Pressable>
             );
@@ -60,9 +61,14 @@ const BottomNav = ({ hidden }: { hidden?: boolean }) => {
               className="flex-1 justify-center items-center"
             >
               {React.cloneElement(iconToRender, {
-                color: isActive ? "#F83758" : "#999",
+                color: isActive ? (isDark ? themeColor : "#F83758") : isDark ? "#FFF" : "#999",
               })}
-              <Text className={`text-xs font-semibold ${isActive ? "text-[#F83758]" : "text-gray-400"}`}>
+              <Text
+                className="text-xs font-semibold"
+                style={{
+                  color: isActive ? (isDark ? themeColor : "#F83758") : isDark ? "#FFF" : "#999",
+                }}
+              >
                 {item.name}
               </Text>
             </Pressable>

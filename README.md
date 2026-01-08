@@ -4,4 +4,6 @@ Figma: https://www.figma.com/design/GxQfCq008rl1sFtRqFDxST/Mobile-App-Assignment
 
 ### Cart Page Sample
 
-<img src="assets/cartPage.jpeg" width="300" alt="Cart Page Sample" />
+<img src="assets/mode1.jpeg" width="300" alt="Cart Page Sample" />
+<br/>
+<img src="assets/mode2.jpeg" width="300" alt="Cart Page Sample" />

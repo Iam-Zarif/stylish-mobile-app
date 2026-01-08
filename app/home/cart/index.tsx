@@ -61,7 +61,7 @@ const CartScreen = () => {
     {
       id: "6",
       name: "Casual Backpack",
-      price: 180,
+      price: 180, 
       qty: 1,
       stock: "In Stock",
       image:

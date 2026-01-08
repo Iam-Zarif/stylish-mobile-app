@@ -4,43 +4,54 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Menu from "./Menu";
 import NavItems from "./NavItems";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../../provider/ThemeContext";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 interface NavbarProps {
   onDrawerChange?: (open: boolean) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onDrawerChange }) => {
+  const { isDark } = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const drawerAnim = useRef(new Animated.Value(-width)).current;
 
-  const toggleDrawer = () => {
-    if (!drawerOpen) {
-      setDrawerOpen(true);
-      onDrawerChange?.(true);
-      Animated.timing(drawerAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(drawerAnim, {
-        toValue: -width,
-        duration: 300,
-        useNativeDriver: false,
-      }).start(() => {
-        setDrawerOpen(false);
-        onDrawerChange?.(false);
-      });
-    }
+  const openDrawer = () => {
+    setDrawerOpen(true);
+    onDrawerChange?.(true);
+    Animated.timing(drawerAnim, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const closeDrawer = () => {
+    Animated.timing(drawerAnim, {
+      toValue: -width,
+      duration: 300,
+      useNativeDriver: false,
+    }).start(() => {
+      setDrawerOpen(false);
+      onDrawerChange?.(false);
+    });
   };
 
   return (
-    <SafeAreaView edges={["top"]} className="bg-neutral-100 rounded-full z-50">
-      <View className="flex-row shadow-sm shadow-neutral-300 rounded-full items-center justify-between py-1.5 px-3">
-        <Pressable onPress={toggleDrawer}>
+    <SafeAreaView
+      edges={["top"]}
+      className={`border rounded-full z-50 ${
+        isDark ? "bg-neutral-900 border-neutral-700" : "bg-white border-neutral-200"
+      }`}
+    >
+      <View
+        className={`flex-row shadow-sm rounded-full items-center justify-between py-1.5 px-3 ${
+          isDark ? "shadow-black" : "shadow-neutral-300"
+        }`}
+      >
+        <Pressable onPress={openDrawer}>
           <Menu />
         </Pressable>
 
@@ -50,7 +61,13 @@ const Navbar: React.FC<NavbarProps> = ({ onDrawerChange }) => {
             className="w-10 h-10"
             resizeMode="contain"
           />
-          <Text className="text-[#4392F9] font-bold font-libre">Stylish</Text>
+          <Text
+            className={`font-bold font-libre ${
+              isDark ? "text-white" : "text-[#4392F9]"
+            }`}
+          >
+            Stylish
+          </Text>
         </View>
 
         <Image
@@ -64,18 +81,28 @@ const Navbar: React.FC<NavbarProps> = ({ onDrawerChange }) => {
         <View className="absolute top-0 left-0 w-screen h-screen z-[1000]">
           <Pressable
             className="absolute top-0 left-0 w-screen h-screen bg-black/25"
-            onPress={toggleDrawer}
+            onPress={closeDrawer}
           />
 
           <Animated.View
             style={{ left: drawerAnim }}
-            className="absolute top-0 h-screen w-screen bg-white p-4 shadow-xl"
+            className={`absolute top-0 h-screen w-screen p-4 shadow-xl ${
+              isDark ? "bg-neutral-900" : "bg-white"
+            }`}
           >
-            <Pressable onPress={toggleDrawer} className="absolute top-5 right-5">
-              <Ionicons name="close" size={28} color="#F83758" />
+            <Pressable onPress={closeDrawer} className="absolute top-5 right-5">
+              <Ionicons
+                name="close"
+                size={28}
+                color={isDark ? "#FACC15" : "#F83758"}
+              />
             </Pressable>
 
-            <NavItems activeItem={activeItem} setActiveItem={setActiveItem} />
+            <NavItems
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
+              onSelect={closeDrawer}
+            />
           </Animated.View>
         </View>
       )}
