@@ -7,7 +7,6 @@ import {
   Pressable,
   Switch,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../../../provider/ThemeContext";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -60,7 +59,7 @@ const SettingsScreen = () => {
   ];
 
   return (
-    <SafeAreaView
+    <View
       className={`flex-1 ${isDark ? "bg-black" : "bg-white"} pb-12`}
     >
       <StatusBar
@@ -147,7 +146,7 @@ const SettingsScreen = () => {
           </View>
         ))}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

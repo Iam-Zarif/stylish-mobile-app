@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -23,13 +24,15 @@ const Register = () => {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-[#FAFAFA] py-10">
+      <ScrollView keyboardShouldPersistTaps="handled"  showsVerticalScrollIndicator={false}>
+    <SafeAreaView className="flex-1 bg-[#FAFAFA] pb-20">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
       >
-        <View className="px-6 justify-center flex-1">
+     
+
           <View className="items-center mb-1">
             <Text className="text-4xl font-bold text-center mb-2 text-[#F83758]">
               Create Account
@@ -44,8 +47,8 @@ const Register = () => {
             <Ionicons name="person-outline" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Enter your full name"
-              className="ml-3 flex-1"
-              value={name}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={name} placeholderTextColor="#242424"
               onChangeText={setName}
             />
           </View>
@@ -55,8 +58,8 @@ const Register = () => {
             <Ionicons name="mail" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Enter your email"
-              className="ml-3 flex-1"
-              value={email}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={email} placeholderTextColor="#242424"
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
@@ -68,8 +71,8 @@ const Register = () => {
             <MaterialIcons name="lock-outline" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Enter your password"
-              className="ml-3 flex-1"
-              value={password}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={password} placeholderTextColor="#242424"
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
             />
@@ -89,8 +92,8 @@ const Register = () => {
             <MaterialIcons name="lock-outline" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Confirm your password"
-              className="ml-3 flex-1"
-              value={confirmPassword}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={confirmPassword} placeholderTextColor="#242424"
               onChangeText={setConfirmPassword}
               secureTextEntry={!showConfirm}
             />
@@ -154,9 +157,9 @@ const Register = () => {
               <Text className="text-[#F83758] font-bold">Login</Text>
             </Pressable>
           </View>
-        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
+        </ScrollView>
   );
 };
 

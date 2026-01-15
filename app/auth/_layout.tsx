@@ -2,17 +2,17 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Slot } from "expo-router";
 
-const _layout = () => {
+const AuthLayout = () => {
   return (
-    <>
+    <View className="flex-1 px-4  justify-center pt-12 bg-[#FAFAFA] flex-col ">
       <Image
         source={require("../../assets/favicon.png")}
-        className="w-12  mx-auto mt-4 h-12 mb-1"
+        className="w-12 h-12 mx-auto mb-6 bg-[#FAFAFA]"
         resizeMode="contain"
       />
-      <Slot/>
-    </>
+      <Slot />
+    </View>
   );
 };
 
-export default _layout;
+export default AuthLayout;

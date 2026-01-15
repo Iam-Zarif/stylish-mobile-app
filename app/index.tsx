@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Image, StatusBar, Text, Pressable, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Image, StatusBar, Text, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 
@@ -8,7 +7,7 @@ const App = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-[#FAFAFA]">
+    <View className="flex-1 bg-[#FAFAFA]">
       <StatusBar
         barStyle="light-content"    
         backgroundColor="#000000"  
@@ -26,7 +25,7 @@ const App = () => {
           style={{ position: "absolute", bottom: 0, width: "100%", height: "45%" }}
         />
 
-        <View className="absolute bottom-6 w-full px-8">
+        <View className="absolute bottom-10 w-full px-8">
           <Text className="text-white text-5xl font-bold text-center">
             You want Authentic, here you go!
           </Text>
@@ -45,10 +44,8 @@ const App = () => {
             </Text>
           </Pressable>
         </View>
-
-     
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

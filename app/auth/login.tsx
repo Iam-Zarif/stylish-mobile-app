@@ -22,25 +22,21 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-[#FAFAFA]">
+    <SafeAreaView className="flex-1 justify-center bg-[#FAFAFA]">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
       >
         <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            paddingHorizontal: 24,
-          }}
           keyboardShouldPersistTaps="handled"
         >
+        
           <View className="items-center mb-6">
             <Text className="text-4xl font-bold text-center mb-2 text-[#F83758]">
               Welcome Back
             </Text>
-            <Text className="text-center text-neutral-400 mb-10">
+            <Text className="text-center text-neutral-400 mb-8">
               Login to continue to your account
             </Text>
           </View>
@@ -50,8 +46,8 @@ const Login = () => {
             <Ionicons name="mail" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Enter your email"
-              className="ml-3 flex-1"
-              value={email}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={email}placeholderTextColor="#242424"
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
@@ -63,8 +59,8 @@ const Login = () => {
             <MaterialIcons name="lock-outline" size={20} color="#9CA3AF" />
             <TextInput
               placeholder="Enter your password"
-              className="ml-3 flex-1"
-              value={password}
+              className="ml-3 flex-1 placeholder:text-neutral-600"
+              value={password}placeholderTextColor="#242424"
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
             />

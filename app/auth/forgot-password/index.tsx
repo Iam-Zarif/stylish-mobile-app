@@ -17,12 +17,12 @@ const ForgotPassEmailScreen = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1 justify-center px-6"
+
       >
         <Pressable
           onPress={() => router.push("/auth/login")}
@@ -47,8 +47,8 @@ const ForgotPassEmailScreen = () => {
           <Ionicons name="mail-outline" size={20} color="#9CA3AF" />
           <TextInput
             placeholder="Enter your email"
-            className="flex-1 ml-3"
-            value={email}
+            className="flex-1 ml-3 placeholder:text-neutral-600"
+            value={email} placeholderTextColor="#242424"
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"

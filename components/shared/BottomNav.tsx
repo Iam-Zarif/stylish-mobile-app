@@ -23,8 +23,8 @@ const BottomNav = ({ hidden }: { hidden?: boolean }) => {
   if (hidden) return null;
 
   return (
-    <SafeAreaView className={`absolute py-2 bottom-0 w-full ${isDark ? "bg-neutral-900 border-t border-neutral-700" : "bg-white border-t border-neutral-200"}`}>
-      <View className={`flex-row h-18 justify-around items-center px-4 rounded-t-2xl `}>
+    <SafeAreaView edges={["bottom"]} className={`absolute py-1.5 h-[4rem] bottom-0 rounded-full w-full  ${isDark ? "bg-neutral-500  border-neutral-700" : "bg-white border border-neutral-200"}`}>
+      <View className={`flex-row  justify-around items-center px-4 rounded-t-2xl `}>
         {navItems.map((item, index) => {
           const isCart = item.name === "Cart";
           const isActive =

@@ -20,12 +20,11 @@ const ForgotPassConfirmPass = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 ">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1 justify-center px-6"
       >
         <Pressable
           onPress={() => router.back()}
@@ -53,8 +52,8 @@ const ForgotPassConfirmPass = () => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
-            placeholder="Enter new password"
-            className="flex-1 px-3 py-3"
+            placeholder="Enter new password" placeholderTextColor="#242424"
+            className="flex-1 px-3 py-3 placeholder:text-neutral-600"
           />
           <Pressable onPress={() => setShowPassword(!showPassword)}>
             <Ionicons
@@ -74,9 +73,9 @@ const ForgotPassConfirmPass = () => {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry={!showConfirmPassword}
-            placeholder="Confirm new password"
-            className="flex-1 px-3 py-3"
-          />
+            placeholder="Confirm new password placeholder:text-neutral-600"
+            className="flex-1 px-3 py-3" placeholderTextColor="#242424"
+          /> 
           <Pressable
             onPress={() =>
               setShowConfirmPassword(!showConfirmPassword)

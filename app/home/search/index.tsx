@@ -9,7 +9,6 @@ import {
   Image,
 } from "react-native";
 import { Ionicons, MaterialIcons, Entypo } from "@expo/vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState("");
@@ -77,16 +76,17 @@ const SearchScreen = () => {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <View className="flex-1 bg-white">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       <View className="px-4 pt-4">
         <Text className="text-xl font-bold text-gray-900 mb-2">Search Products</Text>
         <View className="flex-row items-center bg-gray-100 rounded-full px-4 py-1 mb-4">
           <Ionicons name="search" size={18} color="#9CA3AF" />
           <TextInput
-            className="ml-2 flex-1 text-gray-900 text-sm"
+            className="ml-2  flex-1 text-gray-900 text-sm"
             placeholder="Search for products..."
-            value={searchText}
+            value={searchText} placeholderTextColor="#242424"
+            
             onChangeText={setSearchText}
           />
         </View>
@@ -133,7 +133,7 @@ const SearchScreen = () => {
           </View>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

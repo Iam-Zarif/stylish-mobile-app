@@ -1,26 +1,30 @@
 {
   "expo": {
     "name": "Stylish",
-    "slug": "my-app",
-    "scheme": "your-app",
+    "slug": "stylish",
+    "scheme": "stylish",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/app.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "icon": "./assets/app.png", 
     "splash": {
       "image": "./assets/app.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FAFAFA"
     },
+    "newArchEnabled": true,
     "ios": {
+      "bundleIdentifier": "com.mostofafatin.stylish",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.mostofafatin.stylish",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/app.png"
+        "foregroundImage": "./assets/app.png",
+        "backgroundColor": "#FAFAFA"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "jsEngine": "hermes"
     },
     "web": {
       "favicon": "./assets/small.png"
@@ -28,6 +32,12 @@
     "plugins": [
       "expo-router",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "84cb9fd6-58b1-4ac3-8939-f1ed107c54dd"
+      }
+    }
   }
 }

@@ -47,12 +47,11 @@ const ForgotPassOtpPage = () => {
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 ">
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1 justify-center px-6"
       >
         <Pressable
           onPress={() => router.push("/auth/forgot-password")}

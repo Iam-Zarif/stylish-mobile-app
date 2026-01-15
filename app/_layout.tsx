@@ -3,20 +3,21 @@ import "../global.css";
 import { ThemeProvider, useTheme } from "../provider/ThemeContext";
 import "react-native-gesture-handler";
 import "react-native-reanimated";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 function ThemedLayout() {
   const { isDark } = useTheme();
 
   return (
-    <SafeAreaView
+    <View
       style={[
         styles.container,
-        { backgroundColor: isDark ? "#000" : "#fff" },
+        { backgroundColor: isDark ? "#000" : "#f2f4f5" },
       ]}
     >
       <Slot />
-    </SafeAreaView>
+  
+    </View>
   );
 }
 
