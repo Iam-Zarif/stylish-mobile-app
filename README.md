@@ -9,3 +9,4 @@ Figma refernce: https://www.figma.com/design/GxQfCq008rl1sFtRqFDxST/Mobile-App-A
 <img src="assets/mode2.jpeg" width="300" alt="Cart Page Sample" />
 
 eas build --platform android --profile preview --non-interactive
+eas build --platform ios --profile production
